@@ -34,10 +34,9 @@ subscribe:
 #  LOG_LEVEL: info
 
 variables:
-  # TODO Xref web bucket
-  # MEDIA_URL: !GetAtt [AddonsStack, Outputs.filesBucketURL]
-  # STATIC_URL: !GetAtt [AddonsStack, Outputs.filesBucketURL]
-  # AWS_STORAGE_BUCKET_NAME: !GetAtt [AddonsStack, Outputs.filesName]
+  # TODO MEDIA_URL:
+  # TODO STATIC_URL:
+  # TODO AWS_STORAGE_BUCKET_NAME:
   AWS_QUERYSTRING_AUTH: True
   AWS_LOCATION: uploads
 

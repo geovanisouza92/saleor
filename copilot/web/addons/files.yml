@@ -16,6 +16,12 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       AccessControl: Private
+      BucketName: !Sub
+        - ${App}-${Env}-files
+        - App:
+            Ref: App
+          Env:
+            Ref: Env
       BucketEncryption:
         ServerSideEncryptionConfiguration:
         - ServerSideEncryptionByDefault:
@@ -72,12 +78,20 @@ Resources:
             Resource: !Sub ${filesBucket.Arn}
 
 Outputs:
-  filesName:
-    Description: "The name of a user-defined bucket."
-    Value: !Ref filesBucket
-  filesAccessPolicy:
+  FilesAccessPolicy:
     Description: "The IAM::ManagedPolicy to attach to the task role"
     Value: !Ref filesAccessPolicy
-  filesBucketURL:
-    Description: "The URL of the files bucket"
+    # Export:
+    #   Name: !Sub ${App}-${Env}-${Name}-FilesAccessPolicy
+  MediaUrl:
     Value: !Sub ${filesBucket.WebsiteURL}
+    # Export:
+    #   Name: !Sub ${App}-${Env}-${Name}-MediaUrl
+  StaticUrl:
+    Value: !Sub ${filesBucket.WebsiteURL}
+    # Export:
+    #   Name: !Sub ${App}-${Env}-${Name}-StaticUrl
+  AwsStorageBucketName:
+    Value: !Ref filesBucket
+    # Export:
+    #   Name: !Sub ${App}-${Env}-${Name}-AwsStorageBucketName
